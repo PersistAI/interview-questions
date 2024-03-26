@@ -13,9 +13,17 @@ def two_sum(nums, target):
     Returns:
     List[int]: Indices of the two numbers that add up to the target.
     """
-    # YOUR CODE HERE
-    pass
-
+    numset = set(nums)
+    for i,x in enumerate(nums):
+        y = target - x
+        if y in numset and y != x:
+            j = nums.index(y, i+1)
+            ret = [i,j]
+            return ret
+    # if we get here, the answer must be a duplicate because each test case is guaranteed to have one correct answer
+    val = target // 2
+    ret = [i for i,x in enumerate(nums) if x == val]
+    return ret
 
 # Question 2
 def is_valid_parenthesis(s):
@@ -32,5 +40,21 @@ def is_valid_parenthesis(s):
     Returns:
     bool: True if the string is valid, False otherwise.
     """
-    # YOUR CODE HERE
-    pass
+    openers = '([{'
+    opener_for = {
+            ')':'(',
+            ']':'[',
+            '}':'{'
+    }
+    opens = []
+    for c in s:
+        if c in openers:
+            opens.append(c)
+        else:
+            if len(opens) == 0:
+                return False
+            elif opens[-1] == opener_for[c]:
+                opens.pop()
+            else:
+                return False
+    return True

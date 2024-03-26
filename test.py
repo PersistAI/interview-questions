@@ -8,7 +8,8 @@ from questions import two_sum, is_valid_parenthesis
 ])
 
 def test_two_sum(nums, target, expected):
-    assert sorted(two_sum(nums, target)) == sorted(expected)
+    ans = two_sum(nums,target)
+    assert sorted(ans) == sorted(expected)
 
 @pytest.mark.parametrize("s, expected", [
     ("()", True),
@@ -16,6 +17,7 @@ def test_two_sum(nums, target, expected):
     ("(]", False),
     ("([)]", False),
     ("{[]}", True),
+    ("}{[]}", False),
 ])
 def test_is_valid(s, expected):
     assert is_valid_parenthesis(s) == expected
