@@ -17,7 +17,7 @@ def two_sum(nums, target):
     pass
 
 
-# Question 2
+# Question 2 (Debugging)
 def is_valid_parenthesis(s):
     """
     Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
@@ -32,5 +32,15 @@ def is_valid_parenthesis(s):
     Returns:
     bool: True if the string is valid, False otherwise.
     """
-    # YOUR CODE HERE
-    pass
+    stack = []
+    for c in s:
+        if c == ")" and stack.pop() != "(":
+            return False
+        elif c == "]" and stack.pop() != "[":
+            return False
+        elif c == "}" and stack.pop()  != "{":
+            return False
+        else:
+            stack.append(c)
+    return True
+
